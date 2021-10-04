@@ -19,3 +19,18 @@ def powerdifference(Avg_slope = 0, Mass = 1250, fr = 0.011, Time = 1, Distance =
     baseline = powerconsumption(Mass = Mass, fr = fr, Time = Time, Distance = Distance)
     experiment = powerconsumption(Mass = Mass, fr = fr, Time = Time, Distance = Distance, Avg_slope = Avg_slope)
     return experiment - baseline
+
+
+def powerconsumption2(DeltaH, Mass = 1250, Time = 1):
+    #DeltaH in km difference between start and stop, Mass (kg), Time (hours)
+    g = 9.81
+    DeltaHpersecond = DeltaH / (Time * 3600)
+    Energy = Mass * g * DeltaHpersecond * Time
+    return Energy
+
+#Difference between powerdifference and powerconsumption2 is almost none, at worst case scenario (world's steepest road is 37% grade) difference between models is 2.5%
+#More normal example of 5% grade is 0.07% difference between models
+#Probably should use powerconsumption2 as it is much simpler to read and understand
+
+# example input powerdifference(Avg_slope = 0.02) = 6.8113
+# example input powerconsumption2(DeltaH = 2)     = 6.8125
