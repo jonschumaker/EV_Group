@@ -1,0 +1,10 @@
+!pip install addfips
+import addfips 
+
+df = pd.DataFrame({'state': ['MI', 'IL', 'WA', 'NJ', 'TX', 'FL','CA'],
+ 'unemp': [5.3, 5.4, 6.6, 5.5, 7.2, 7.1, 11]})
+
+fig = px.choropleth(df, locations='state', locationmode="USA-states", color='unemp',
+                             scope="usa",
+                             labels={'unemp':'unemployment rate'})
+fig.show()
