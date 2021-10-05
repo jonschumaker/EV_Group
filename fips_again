@@ -1,0 +1,13 @@
+!pip install addfips
+import addfips 
+
+df= pd.DataFrame({
+                'COUNTY': ['wayne','brown','fresno'], \
+                'rate': [3.2, 5.5, 3.5],  \
+                'state':['MI', 'IL', 'CA']
+                })
+af = addfips.AddFIPS()
+
+df['fips'] = df.apply(lambda row: af.get_county_fips(row['COUNTY'], row['state']), axis=1)
+
+df.head()
